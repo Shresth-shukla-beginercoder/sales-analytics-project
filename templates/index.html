@@ -5,25 +5,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sales Analytics</title>
+    <title>Sales Analytics | Upload Dataset</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
 
-    <h1>Sales Analytics Dashboard</h1>
+<div class="upload-container">
 
-    <p>Upload your sales dataset</p>
+    <div class="upload-card">
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <h1>Sales Analytics Dashboard</h1>
 
-        <input type="file" name="file" accept=".csv,.xlsx">
+        <p class="subtitle">
+            Upload your sales dataset and transform raw data into meaningful insights.
+        </p>
 
-        <button type="submit">
-            Upload Dataset
-        </button>
+        <div class="upload-icon">
+            📊
+        </div>
 
-    </form>
+        <h2>Upload Sales Dataset</h2>
+
+        <p class="upload-info">
+            Supported formats: CSV and Excel (.xlsx)
+        </p>
+
+        <form action="/upload"
+              method="POST"
+              enctype="multipart/form-data"
+              class="upload-form">
+
+            <label for="file" class="file-label">
+                Choose Dataset
+            </label>
+
+            <input type="file"
+                   id="file"
+                   name="file"
+                   accept=".csv,.xlsx"
+                   required
+                   onchange="showFileName()">
+
+            <p id="file-name" class="file-name">
+                No file selected
+            </p>
+
+            <button type="submit">
+                Upload & Analyze
+            </button>
+
+        </form>
+
+        <div class="features">
+
+            <div class="feature">
+                <strong>🧹 Clean</strong>
+                <span>Automatically clean your data</span>
+            </div>
+
+            <div class="feature">
+                <strong>📈 Analyze</strong>
+                <span>Perform sales analysis</span>
+            </div>
+
+            <div class="feature">
+                <strong>📊 Visualize</strong>
+                <span>Explore interactive charts</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function showFileName() {
+
+    const input = document.getElementById("file");
+    const fileName = document.getElementById("file-name");
+
+    if (input.files.length > 0) {
+        fileName.textContent = "Selected: " + input.files[0].name;
+    } else {
+        fileName.textContent = "No file selected";
+    }
+}
+</script>
 
 </body>
-
 </html>

@@ -277,3 +277,136 @@ form a {
 .search-box input:focus {
     border-color: #222;
 }
+/* ================================
+   UPLOAD PAGE
+================================ */
+
+.upload-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+}
+
+.upload-card {
+    width: 100%;
+    max-width: 700px;
+    background: white;
+    padding: 45px;
+    border-radius: 18px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.10);
+    text-align: center;
+}
+
+.upload-card h1 {
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.upload-icon {
+    font-size: 55px;
+    margin: 15px 0;
+}
+
+.upload-card h2 {
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+.upload-info {
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    background: #f8f9fa;
+    box-shadow: none;
+    padding: 25px;
+    border: 1px dashed #bbb;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 11px 20px;
+    border-radius: 7px;
+    background: #222;
+    color: white;
+    cursor: pointer;
+}
+
+.file-label:hover {
+    opacity: 0.8;
+}
+
+.upload-form input[type="file"] {
+    width: 100%;
+    max-width: 450px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    background: white;
+}
+
+.upload-form button {
+    margin-top: 8px;
+    width: 100%;
+    max-width: 250px;
+}
+
+.file-name {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+    word-break: break-word;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.feature {
+    background: #f5f6f8;
+    padding: 18px 10px;
+    border-radius: 10px;
+}
+
+.feature strong {
+    display: block;
+    margin-bottom: 7px;
+}
+
+.feature span {
+    display: block;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+
+    .upload-card {
+        padding: 30px 20px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .upload-icon {
+        font-size: 45px;
+    }
+}
