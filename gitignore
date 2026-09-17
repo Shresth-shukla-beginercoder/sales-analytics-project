@@ -1,0 +1,7 @@
+venv/pycache/*.pyc
+
+data/cleaned/data/raw/
+
+.idea/.vscode/
+
+.env *.log

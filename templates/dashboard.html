@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sales Analytics Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+ <script src="{{ url_for('static', filename='js/plotly.min.js') }}"></script>
+    <script>
+    console.log("Plotly loaded:", typeof Plotly);
+</script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Sales Analytics Dashboard</h1>
+
+    <!-- FILTERS -->
+    <h2>Filters</h2>
+
+    <form action="/dashboard" method="GET">
+
+        <label>City:</label>
+
+        <select name="city">
+
+            <option value="">All Cities</option>
+
+            {% for city in cities %}
+                <option value="{{ city }}"
+                    {% if city == selected_city %}selected{% endif %}>
+                    {{ city }}
+                </option>
+            {% endfor %}
+
+        </select>
+
+
+        <label>Category:</label>
+
+        <select name="category">
+
+            <option value="">All Categories</option>
+
+            {% for category in categories %}
+                <option value="{{ category }}"
+                    {% if category == selected_category %}selected{% endif %}>
+                    {{ category }}
+                </option>
+            {% endfor %}
+
+        </select>
+        <label>Product:</label>
+
+<select name="product">
+
+    <option value="">All Products</option>
+
+    {% for product in products %}
+
+        <option value="{{ product }}"
+            {% if product == selected_product %}selected{% endif %}>
+
+            {{ product }}
+
+        </option>
+
+    {% endfor %}
+
+</select>
+
+        <button type="submit">
+            Apply Filters
+        </button>
+<a href="{{ url_for('dashboard') }}" class="reset-button">
+    Reset Filters
+</a>
+
+    </form>
+{% if no_data %}
+    <div class="chart-box" style="text-align:center; padding:40px;">
+        <h2>No Data Found</h2>
+        <p>
+            No sales records match the selected filter combination.
+        </p>
+
+        <a href="{{ url_for('dashboard') }}" class="button">
+            Reset Filters
+        </a>
+    </div>
+{% else %}
+
+    <!-- SALES SUMMARY -->
+
+    <h2>Sales Summary</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Total Sales</h3>
+            <p>₹{{ "%.2f"|format(total_sales) }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Average Sales</h3>
+            <p>₹{{ "%.2f"|format(average_sales) }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Quantity</h3>
+            <p>{{ total_quantity }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Best Product</h3>
+            <p>{{ best_product }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Top City</h3>
+            <p>{{ top_city }}</p>
+        </div>
+
+    </div>
+
+
+    <!-- CHARTS -->
+
+    <h2>Sales Charts</h2>
+
+    <div class="chart-grid">
+
+        <div class="chart-box">
+            <div id="product-chart"></div>
+        </div>
+
+        <div class="chart-box">
+            <div id="category-chart"></div>
+        </div>
+
+    </div>
+
+
+    <div class="chart-box full-width">
+        <div id="monthly-chart"></div>
+    </div>
+
+<!-- CLEANED DATA PREVIEW -->
+
+<h2>Cleaned Data Preview</h2>
+<div class="search-box">
+
+    <input
+        type="text"
+        id="tableSearch"
+        placeholder="Search product, city, category..."
+        onkeyup="searchTable()"
+    >
+
+</div>
+
+<div class="chart-box">
+
+    <div style="overflow-x: auto;">
+
+        <table id ="dataTable">
+
+            <thead>
+
+                <tr>
+
+                    {% for column in preview_columns %}
+
+                    <th>
+                        {{ column }}
+                    </th>
+
+                    {% endfor %}
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for row in preview_rows %}
+
+                <tr>
+
+                    {% for value in row %}
+
+                    <td>
+                        {{ value }}
+                    </td>
+
+                    {% endfor %}
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+    <!-- DOWNLOAD -->
+
+    <div class="buttons">
+
+      <a href="/download"
+   class="button">
+    Download CSV
+</a>
+
+<a href="/download-excel"
+   class="button">
+    Download Excel
+</a>
+
+        <a href="/" class="button">
+            Upload New Dataset
+        </a>
+
+    </div>
+
+</div>
+{%endif%}
+
+<!-- PLOTLY JAVASCRIPT -->
+
+<script>
+
+    const productData = {{ product_chart | safe }};
+
+    Plotly.newPlot(
+        "product-chart",
+        productData.data,
+        productData.layout,
+        {responsive: true}
+    );
+
+
+    const categoryData = {{ category_chart | safe }};
+
+    Plotly.newPlot(
+        "category-chart",
+        categoryData.data,
+        categoryData.layout,
+        {responsive: true}
+    );
+
+
+    const monthlyData = {{ monthly_chart | safe }};
+
+    Plotly.newPlot(
+        "monthly-chart",
+        monthlyData.data,
+        monthlyData.layout,
+        {responsive: true}
+    );
+
+</script>
+<script>
+
+function searchTable() {
+
+    const input = document.getElementById("tableSearch");
+
+    const filter = input.value.toLowerCase();
+
+    const table = document.getElementById("dataTable");
+
+    const rows = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+
+        const rowText = rows[i].textContent.toLowerCase();
+
+        if (rowText.includes(filter)) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+
+    }
+}
+
+</script>
+</body>
+
+</html>

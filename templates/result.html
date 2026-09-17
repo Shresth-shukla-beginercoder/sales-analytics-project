@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cleaning Report</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Data Cleaning Report</h1>
+
+    <p style="text-align:center;">
+        Your dataset has been successfully cleaned.
+    </p>
+
+
+    <h2>Cleaning Summary</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Original Rows</h3>
+            <p>{{ report.before_rows }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Cleaned Rows</h3>
+            <p>{{ report.after_rows }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Duplicates Found</h3>
+            <p>{{ report.duplicates }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Rows Removed</h3>
+            <p>{{ report.rows_removed }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Missing Values Before</h3>
+            <p>{{ report.before_missing }}</p>
+        </div>
+
+        <div class="card">
+            <h3>Missing Values After</h3>
+            <p>{{ report.after_missing }}</p>
+        </div>
+
+    </div>
+
+
+    <h2>Cleaning Operations Performed</h2>
+
+    <div class="chart-box">
+
+        <ul>
+
+            <li>Removed duplicate records</li>
+
+            <li>Removed extra spaces from text values</li>
+
+            <li>Standardized category names</li>
+
+            <li>Converted dates into a consistent format</li>
+
+            <li>Converted numeric columns into numeric data types</li>
+
+            <li>Handled invalid quantity values</li>
+
+            <li>Calculated missing sales values where possible</li>
+
+            <li>Removed records with essential missing values</li>
+
+        </ul>
+
+    </div>
+
+
+    <div class="buttons">
+
+        <a href="/dashboard"
+           class="button">
+            View Sales Dashboard
+        </a>
+
+       <a href="/download"
+   class="button">
+    Download CSV
+</a>
+
+<a href="/download-excel"
+   class="button">
+    Download Excel
+</a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

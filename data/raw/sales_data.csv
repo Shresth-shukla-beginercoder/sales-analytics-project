@@ -1,0 +1,17 @@
+Order_ID,Order_Date,Product,Category,Quantity,Price,City,Sales
+1001,2026-01-05,Laptop,Electronics,2,50000,Delhi,100000
+1002,2026-01-07,Mouse,Electronics,5,500,Gorakhpur,2500
+1003,07/01/2026,Keyboard,electronics,3,1200,Lucknow,3600
+1004,2026-02-02,Chair,Furniture,4,3500,Delhi,14000
+1005,2026-02-08,Desk,Furniture,2,7000,Gorakhpur,14000
+1006,15-02-2026,Monitor,Electronics,3,15000,Lucknow,45000
+1007,2026-03-01,Laptop,Electronics,1,55000,Delhi,55000
+1008,2026-03-05,Mouse,Electronics,10,450,Gorakhpur,4500
+1009,2026-03-12,Chair,Furniture,2,4000,Lucknow,8000
+1010,2026-03-20,Desk,Furniture,3,6500,Delhi,19500
+1003,07/01/2026,Keyboard,electronics,3,1200,Lucknow,3600
+1011,2026-03-25,Keyboard, Electronics,2,1300, Delhi ,2600
+1012,,Mouse,Electronics,4,500,Gorakhpur,2000
+1013,2026-04-02,Laptop,Electronics,-1,50000,Delhi,-50000
+1014,2026-04-05,Chair,Furniture,2,,Lucknow,
+1015,2026-04-10,Desk,Furniture,0,7000,Gorakhpur,0

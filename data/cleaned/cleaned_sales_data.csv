@@ -1,0 +1,8 @@
+order_id,order_date,product,category,quantity,price,city,sales
+1001,2026-05-01,Laptop,Electronics,2.0,50000.0,Delhi,100000.0
+1002,2026-07-01,Mouse,Electronics,5.0,500.0,Gorakhpur,2500.0
+1004,2026-02-02,Chair,Furniture,4.0,3500.0,Delhi,14000.0
+1005,2026-08-02,Desk,Furniture,2.0,7000.0,Gorakhpur,14000.0
+1007,2026-01-03,Laptop,Electronics,1.0,55000.0,Delhi,55000.0
+1008,2026-05-03,Mouse,Electronics,10.0,450.0,Gorakhpur,4500.0
+1009,2026-12-03,Chair,Furniture,2.0,4000.0,Lucknow,8000.0
