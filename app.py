@@ -396,7 +396,7 @@ def dashboard():
     # Cleaned Data Preview
     # -----------------------------------
 
-    preview_df = df.head(10)
+    preview_df = df.head(100)
 
     preview_columns = preview_df.columns.tolist()
     preview_rows = preview_df.values.tolist()
