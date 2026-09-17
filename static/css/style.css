@@ -428,3 +428,42 @@ form a {
     top: 0;
     z-index: 2;
 }
+/* Mobile-friendly file upload */
+
+.file-label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 12px 24px;
+    margin-bottom: 10px;
+}
+
+input[type="file"] {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+
+    .upload-card {
+        width: 90%;
+        max-width: 420px;
+        margin: 20px auto;
+        padding: 25px 18px;
+        box-sizing: border-box;
+    }
+
+    .upload-form {
+        width: 100%;
+    }
+
+    .file-label {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    input[type="file"] {
+        font-size: 14px;
+    }
+}
