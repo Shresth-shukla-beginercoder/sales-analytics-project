@@ -2,28 +2,18 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" 
-    <link rel="manifest"
-      href="{{ url_for('static', filename='manifest.json') }}">
 
-<meta name="theme-color"
-      content="#1f2937">
-
-<meta name="mobile-web-app-capable"
-      content="yes">
-
-<meta name="apple-mobile-web-app-capable"
-      content="yes">
-
-<meta name="apple-mobile-web-app-status-bar-style"
-      content="default">
-    content="width=device-width, initial-scale=1.0">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Sales Analytics | Upload Dataset</title>
 
+   
+
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
 
 <body>
@@ -58,11 +48,11 @@
             </label>
 
             <input type="file"
-       id="file"
-       name="file"
-       accept=".csv,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv"
-       required
-       onchange="showFileName()">
+                   id="file"
+                   name="file"
+                   accept=".csv,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv"
+                   required
+                   onchange="showFileName()">
 
             <p id="file-name" class="file-name">
                 No file selected
@@ -110,16 +100,6 @@ function showFileName() {
     }
 }
 </script>
-<script>
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register(
-            "{{ url_for('static', filename='sw.js') }}"
-        )
-        .then(() => console.log("Service Worker registered"))
-        .catch(error => console.error("Service Worker error:", error));
-    });
-}
-</script>
+
 </body>
 </html>
