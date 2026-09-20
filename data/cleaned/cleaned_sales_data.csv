@@ -1,43 +1,51 @@
-order_id,order_date,product,category,quantity,price,city,sales
-2001,2026-02-01,Laptop,Electronics,2.0,55000,Delhi,110000
-2002,2026-03-01,Mouse,Electronics,5.0,600,Mumbai,3000
-2003,2026-05-01,Keyboard,Electronics,3.0,1400,Lucknow,4200
-2004,2026-07-01,Chair,Furniture,4.0,3500,Gorakhpur,14000
-2005,2026-09-01,Desk,Furniture,2.0,7500,Kanpur,15000
-2006,2026-11-01,T-Shirt,Clothing,5.0,800,Varanasi,4000
-2016,2026-01-02,T-Shirt,Clothing,6.0,750,Pune,4500
-2017,2026-03-02,Jeans,Clothing,4.0,2000,Nagpur,8000
-2018,2026-05-02,Rice,Grocery,15.0,680,Hyderabad,10200
-2019,2026-07-02,Headphones,Electronics,3.0,3000,Bengaluru,9000
-2020,2026-09-02,Football,Sports,5.0,1100,Chennai,5500
-2021,2026-11-02,Laptop,Electronics,2.0,58000,Delhi,116000
-2030,2026-01-03,Football,Sports,6.0,1250,Jaipur,7500
-2031,2026-03-03,Laptop,Electronics,1.0,62000,Kolkata,62000
-2032,2026-05-03,Mouse,Electronics,7.0,580,Patna,4060
-2033,2026-07-03,Keyboard,Electronics,5.0,1350,Ranchi,6750
-2034,2026-09-03,Chair,Furniture,2.0,4500,Bhopal,9000
-2035,2026-11-03,Desk,Furniture,4.0,7200,Indore,28800
-2046,2026-02-04,T-Shirt,Clothing,7.0,780,Varanasi,5460
-2047,2026-04-04,Jeans,Clothing,5.0,2100,Noida,10500
-2048,2026-06-04,Rice,Grocery,18.0,690,Prayagraj,12420
-2049,2026-08-04,Headphones,Electronics,3.0,2700,Agra,8100
-2050,2026-10-04,Football,Sports,7.0,1150,Jaipur,8050
-2051,2026-12-04,Laptop,Electronics,3.0,54000,Kolkata,162000
-2061,2026-02-05,Laptop,Electronics,1.0,65000,Delhi,65000
-2062,2026-04-05,Mouse,Electronics,12.0,490,Mumbai,5880
-2063,2026-06-05,Keyboard,Electronics,6.0,1250,Lucknow,7500
-2064,2026-08-05,Chair,Furniture,5.0,4100,Gorakhpur,20500
-2065,2026-10-05,Desk,Furniture,3.0,7900,Kanpur,23700
-2066,2026-12-05,T-Shirt,Clothing,9.0,820,Varanasi,7380
-2076,2026-01-06,T-Shirt,Clothing,6.0,880,Pune,5280
-2077,2026-03-06,Jeans,Clothing,3.0,2400,Nagpur,7200
-2078,2026-05-06,Rice,Grocery,22.0,660,Hyderabad,14520
-2079,2026-07-06,Headphones,Electronics,4.0,3100,Bengaluru,12400
-2080,2026-09-06,Football,Sports,5.0,1350,Chennai,6750
-2081,2026-11-06,Laptop,Electronics,1.0,68000,Delhi,68000
-2091,2026-01-07,Laptop,Electronics,2.0,61000,Kolkata,122000
-2092,2026-03-07,Mouse,Electronics,7.0,570,Patna,3990
-2093,2026-05-07,Keyboard,Electronics,3.0,1500,Ranchi,4500
-2094,2026-07-07,Chair,Furniture,4.0,3900,Bhopal,15600
-2095,2026-09-07,Desk,Furniture,3.0,7600,Indore,22800
-2096,2026-11-07,T-Shirt,Clothing,8.0,860,Pune,6880
+order_id,order_date,customer_name,customer_type,product,category,subcategory,brand,sku,quantity,price,sales,discount,tax,profit,city,state,country,region,postal_code,payment_method,sales_channel,order_status,salesperson,warehouse,campaign_name,shipping_cost,shipping_date,delivery_date,customer_age
+ORD1001,2026-08-01,Rahul Sharma,Regular,Laptop Pro 14,Electronics,Laptops,Techpro,LP14-001,2.0,65000,130000.0,5,23400,18000,Delhi,Delhi,India,North,110001,Upi,Online,Delivered,Amit,Warehouse A,Diwali,500,2026-08-03,2026-08-06,28
+ORD1002,2026-08-02,Priya Singh,Premium,Wireless Mouse,Accessories,Mouse,Logitech,WM-102,5.0,1200,6000.0,10,1080,1500,Lucknow,Uttar Pradesh,India,North,226001,Credit Card,Marketplace,Delivered,Priya,Warehouse B,Summer Sale,200,2026-08-03,2026-08-05,34
+ORD1003,2026-08-03,Ankit Verma,Regular,Mechanical Keyboard,Accessories,Keyboard,Keymaster,KB-201,3.0,3500,10500.0,5,1890,2700,Gorakhpur,Uttar Pradesh,India,North,273001,Debit Card,Online,Shipped,Rohit,Warehouse A,Online Campaign,250,2026-08-04,2026-08-07,25
+ORD1004,2026-08-04,Neha Gupta,Premium,27-inch Monitor,Electronics,Monitors,Viewmax,MON-301,2.0,18500,37000.0,8,6660,7200,Mumbai,Maharashtra,India,West,400001,Credit Card,Online,Delivered,Neha,Warehouse C,Festive Offer,600,2026-08-05,2026-08-09,31
+ORD1005,2026-08-05,Aman Kumar,Regular,USB-C Hub,Accessories,Hubs,Connectx,HUB-401,4.0,2200,8800.0,0,1584,2400,Pune,Maharashtra,India,West,411001,Upi,Retail Store,Delivered,Vikas,Warehouse C,Clearance,300,2026-08-06,2026-08-08,29
+ORD1006,2026-08-06,Riya Mishra,Premium,Smartphone X,Electronics,Mobile,Phonemax,SP-501,1.0,42000,42000.0,10,7560,6500,Bengaluru,Karnataka,India,South,560001,Net Banking,Online,Delivered,Sneha,Warehouse D,New Launch,450,2026-08-07,2026-08-10,27
+ORD1007,2026-08-07,Arjun Yadav,Regular,Tablet Air,Electronics,Tablet,Tabtech,TB-601,2.0,28000,56000.0,5,10080,9000,Chennai,Tamil Nadu,India,South,600001,Upi,Marketplace,Processing,Amit,Warehouse D,Online Campaign,350,2026-08-08,,22
+ORD1008,2026-08-08,Karan Singh,Regular,Office Chair,Furniture,Chair,Comfortseat,CH-701,3.0,8500,25500.0,7,4590,5100,Hyderabad,Telangana,India,South,500001,Cash,Retail Store,Delivered,Priya,Warehouse B,Summer Sale,700,2026-08-09,2026-08-12,36
+ORD1009,2026-08-09,Sneha Patel,Premium,Standing Desk,Furniture,Desk,Workspace,DS-801,1.0,22000,22000.0,5,3960,4000,Kolkata,West Bengal,India,East,700001,Credit Card,Online,Shipped,Rohit,Warehouse A,Festive Offer,800,2026-08-10,2026-08-14,30
+ORD1010,2026-08-10,Vivek Das,Regular,Webcam HD,Electronics,Camera,Visiontech,WC-901,4.0,4500,18000.0,10,3240,3600,Jaipur,Rajasthan,India,West,302001,Debit Card,Marketplace,Delivered,Neha,Warehouse C,Diwali,400,2026-08-11,2026-08-14,41
+ORD1011,2026-08-11,Rahul Sharma,Premium,Bluetooth Speaker,Electronics,Audio,Soundmax,BS-111,2.0,3200,6400.0,5,1152,1800,Delhi,Delhi,India,North,110002,Upi,Online,Delivered,Amit,Warehouse A,New Launch,250,2026-08-12,2026-08-15,28
+ORD1012,2026-08-12,Priya Singh,Regular,Headphones Pro,Electronics,Audio,Soundmax,HP-112,3.0,5500,16500.0,8,2970,4200,Lucknow,Uttar Pradesh,India,North,226002,Credit Card,Online,Delivered,Priya,Warehouse B,Online Campaign,300,2026-08-13,2026-08-16,34
+ORD1013,2026-08-13,Ankit Verma,Regular,External SSD 1TB,Storage,Ssd,Datastore,SSD-113,2.0,7800,15600.0,0,2808,3500,Gorakhpur,Uttar Pradesh,India,North,273002,Upi,Marketplace,Shipped,Rohit,Warehouse A,Summer Sale,250,2026-08-14,2026-08-18,25
+ORD1014,2026-08-14,Neha Gupta,Premium,Power Bank,Accessories,Power,Voltmax,PB-114,5.0,1800,9000.0,5,1620,2300,Mumbai,Maharashtra,India,West,400002,Debit Card,Online,Delivered,Neha,Warehouse C,Clearance,220,2026-08-15,2026-08-18,31
+ORD1015,2026-08-15,Aman Kumar,Regular,Printer,Electronics,Printer,Printpro,PR-115,1.0,12500,12500.0,10,2250,2800,Pune,Maharashtra,India,West,411002,Net Banking,Retail Store,Delivered,Vikas,Warehouse C,Diwali,500,2026-08-16,2026-08-20,29
+ORD1016,2026-08-16,Riya Mishra,Premium,Laptop Pro 14,Electronics,Laptops,Techpro,LP14-001,1.0,65000,65000.0,5,11700,9500,Bengaluru,Karnataka,India,South,560002,Credit Card,Online,Delivered,Sneha,Warehouse D,New Launch,600,2026-08-17,2026-08-21,27
+ORD1017,2026-08-17,Arjun Yadav,Regular,Wireless Mouse,Accessories,Mouse,Logitech,WM-102,6.0,1200,7200.0,0,1296,1900,Chennai,Tamil Nadu,India,South,600002,Upi,Marketplace,Processing,Amit,Warehouse D,Summer Sale,300,2026-08-18,,22
+ORD1018,2026-08-18,Karan Singh,Regular,Mechanical Keyboard,Accessories,Keyboard,Keymaster,KB-201,2.0,3500,7000.0,5,1260,1700,Hyderabad,Telangana,India,South,500002,Cash,Retail Store,Delivered,Priya,Warehouse B,Clearance,250,2026-08-19,2026-08-22,36
+ORD1019,2026-08-19,Sneha Patel,Premium,27-inch Monitor,Electronics,Monitors,Viewmax,MON-301,1.0,18500,18500.0,8,3330,4000,Kolkata,West Bengal,India,East,700002,Credit Card,Online,Shipped,Rohit,Warehouse A,Festive Offer,500,2026-08-20,2026-08-24,30
+ORD1020,2026-08-20,Vivek Das,Regular,Office Chair,Furniture,Chair,Comfortseat,CH-701,2.0,8500,17000.0,7,3060,3400,Jaipur,Rajasthan,India,West,302002,Debit Card,Marketplace,Delivered,Neha,Warehouse C,Online Campaign,550,2026-08-21,2026-08-25,41
+ORD1021,2026-08-21,Rahul Sharma,Regular,Standing Desk,Furniture,Desk,Workspace,DS-801,1.0,22000,22000.0,5,3960,4000,Delhi,Delhi,India,North,110003,Upi,Online,Delivered,Amit,Warehouse A,Diwali,700,2026-08-22,2026-08-26,28
+ORD1022,2026-08-22,Priya Singh,Premium,Webcam HD,Electronics,Camera,Visiontech,WC-901,3.0,4500,13500.0,10,2430,2800,Lucknow,Uttar Pradesh,India,North,226003,Credit Card,Marketplace,Delivered,Priya,Warehouse B,Summer Sale,350,2026-08-23,2026-08-26,34
+ORD1023,2026-08-23,Ankit Verma,Regular,Bluetooth Speaker,Electronics,Audio,Soundmax,BS-111,4.0,3200,12800.0,5,2304,3300,Gorakhpur,Uttar Pradesh,India,North,273003,Upi,Online,Shipped,Rohit,Warehouse A,New Launch,300,2026-08-24,2026-08-28,25
+ORD1024,2026-08-24,Neha Gupta,Premium,Headphones Pro,Electronics,Audio,Soundmax,HP-112,2.0,5500,11000.0,8,1980,2800,Mumbai,Maharashtra,India,West,400003,Debit Card,Online,Delivered,Neha,Warehouse C,Festive Offer,280,2026-08-25,2026-08-29,31
+ORD1025,2026-08-25,Aman Kumar,Regular,External SSD 1TB,Storage,Ssd,Datastore,SSD-113,3.0,7800,23400.0,0,4212,5200,Pune,Maharashtra,India,West,411003,Net Banking,Retail Store,Delivered,Vikas,Warehouse C,Clearance,400,2026-08-26,2026-08-30,29
+ORD1026,2026-08-26,Riya Mishra,Premium,Power Bank,Accessories,Power,Voltmax,PB-114,4.0,1800,7200.0,5,1296,2100,Bengaluru,Karnataka,India,South,560003,Credit Card,Online,Delivered,Sneha,Warehouse D,Online Campaign,250,2026-08-27,2026-08-30,27
+ORD1027,2026-08-27,Arjun Yadav,Regular,Printer,Electronics,Printer,Printpro,PR-115,2.0,12500,25000.0,10,4500,5500,Chennai,Tamil Nadu,India,South,600003,Upi,Marketplace,Processing,Amit,Warehouse D,Diwali,600,2026-08-28,,22
+ORD1028,2026-08-28,Karan Singh,Regular,Laptop Pro 14,Electronics,Laptops,Techpro,LP14-001,,65000,-130000.0,5,0,-18000,Hyderabad,Telangana,India,South,500003,Cash,Online,Cancelled,Priya,Warehouse B,Clearance,500,2026-08-29,,36
+ORD1029,2026-08-29,Sneha Patel,Premium,Wireless Mouse,Accessories,Mouse,Logitech,WM-102,8.0,1200,9600.0,10,1728,2500,Kolkata,West Bengal,India,East,700003,Credit Card,Marketplace,Delivered,Rohit,Warehouse A,Summer Sale,350,2026-08-30,2026-09-02,30
+ORD1030,2026-08-30,Vivek Das,Regular,Mechanical Keyboard,Accessories,Keyboard,Keymaster,KB-201,3.0,3500,10500.0,5,1890,2700,Jaipur,Rajasthan,India,West,302003,Debit Card,Retail Store,Delivered,Neha,Warehouse C,Festive Offer,300,2026-08-31,2026-09-03,41
+ORD1031,2026-08-31,Rahul Sharma,Regular,27-inch Monitor,Electronics,Monitors,Viewmax,MON-301,2.0,18500,37000.0,8,6660,7200,Delhi,Delhi,India,North,110004,Upi,Online,Delivered,Amit,Warehouse A,Diwali,600,2026-09-01,2026-09-05,28
+ORD1032,2026-09-01,Priya Singh,Premium,USB-C Hub,Accessories,Hubs,Connectx,HUB-401,5.0,2200,11000.0,0,1980,3000,Lucknow,Uttar Pradesh,India,North,226004,Credit Card,Marketplace,Shipped,Priya,Warehouse B,Online Campaign,300,2026-09-02,2026-09-06,34
+ORD1033,2026-09-02,Ankit Verma,Regular,Smartphone X,Electronics,Mobile,Phonemax,SP-501,1.0,42000,42000.0,10,7560,6500,Gorakhpur,Uttar Pradesh,India,North,273004,Upi,Online,Delivered,Rohit,Warehouse A,New Launch,450,2026-09-03,2026-09-07,25
+ORD1034,2026-09-03,Neha Gupta,Premium,Tablet Air,Electronics,Tablet,Tabtech,TB-601,2.0,28000,56000.0,5,10080,9000,Mumbai,Maharashtra,India,West,400004,Credit Card,Online,Delivered,Neha,Warehouse C,Festive Offer,400,2026-09-04,2026-09-08,31
+ORD1035,2026-09-04,Aman Kumar,Regular,Office Chair,Furniture,Chair,Comfortseat,CH-701,2.0,8500,17000.0,7,3060,3400,Pune,Maharashtra,India,West,411004,Debit Card,Retail Store,Delivered,Vikas,Warehouse C,Summer Sale,550,2026-09-05,2026-09-09,29
+ORD1036,2026-09-05,Riya Mishra,Premium,Standing Desk,Furniture,Desk,Workspace,DS-801,1.0,22000,22000.0,5,3960,4000,Bengaluru,Karnataka,India,South,560004,Net Banking,Online,Shipped,Sneha,Warehouse D,New Launch,700,2026-09-06,2026-09-10,27
+ORD1037,2026-09-06,Arjun Yadav,Regular,Webcam HD,Electronics,Camera,Visiontech,WC-901,5.0,4500,22500.0,10,4050,4800,Chennai,Tamil Nadu,India,South,600004,Upi,Marketplace,Delivered,Amit,Warehouse D,Online Campaign,450,2026-09-07,2026-09-11,22
+ORD1038,2026-09-07,Karan Singh,Regular,Bluetooth Speaker,Electronics,Audio,Soundmax,BS-111,3.0,3200,9600.0,5,1728,2400,Hyderabad,Telangana,India,South,500004,Cash,Retail Store,Delivered,Priya,Warehouse B,Clearance,300,2026-09-08,2026-09-12,36
+ORD1039,2026-09-08,Sneha Patel,Premium,Headphones Pro,Electronics,Audio,Soundmax,HP-112,4.0,5500,22000.0,8,3960,5600,Kolkata,West Bengal,India,East,700004,Credit Card,Online,Delivered,Rohit,Warehouse A,Diwali,350,2026-09-09,2026-09-13,30
+ORD1040,2026-09-09,Vivek Das,Regular,External SSD 1TB,Storage,Ssd,Datastore,SSD-113,2.0,7800,15600.0,0,2808,3500,Jaipur,Rajasthan,India,West,302004,Debit Card,Marketplace,Shipped,Neha,Warehouse C,Festive Offer,300,2026-09-10,2026-09-14,41
+ORD1041,2026-09-10,Rahul Sharma,Regular,Power Bank,Accessories,Power,Voltmax,PB-114,7.0,1800,12600.0,5,2268,3200,Delhi,Delhi,India,North,110005,Upi,Online,Delivered,Amit,Warehouse A,Summer Sale,300,2026-09-11,2026-09-15,28
+ORD1042,2026-09-11,Priya Singh,Premium,Printer,Electronics,Printer,Printpro,PR-115,1.0,12500,12500.0,10,2250,2800,Lucknow,Uttar Pradesh,India,North,226005,Credit Card,Retail Store,Delivered,Priya,Warehouse B,New Launch,500,2026-09-12,2026-09-16,34
+ORD1043,2026-09-12,Ankit Verma,Regular,Laptop Pro 14,Electronics,Laptops,Techpro,LP14-001,1.0,65000,65000.0,5,11700,9500,Gorakhpur,Uttar Pradesh,India,North,273005,Upi,Online,Delivered,Rohit,Warehouse A,Diwali,600,2026-09-13,2026-09-17,25
+ORD1044,2026-09-13,Neha Gupta,Premium,Wireless Mouse,Accessories,Mouse,Logitech,WM-102,10.0,1200,12000.0,10,2160,3000,Mumbai,Maharashtra,India,West,400005,Credit Card,Marketplace,Delivered,Neha,Warehouse C,Clearance,400,2026-09-14,2026-09-18,31
+ORD1045,2026-09-14,Aman Kumar,Regular,Mechanical Keyboard,Accessories,Keyboard,Keymaster,KB-201,4.0,3500,14000.0,5,2520,3600,Pune,Maharashtra,India,West,411005,Debit Card,Retail Store,Delivered,Vikas,Warehouse C,Festive Offer,350,2026-09-15,2026-09-19,29
+ORD1046,2026-09-15,Riya Mishra,Premium,27-inch Monitor,Electronics,Monitors,Viewmax,MON-301,2.0,18500,37000.0,8,6660,7200,Bengaluru,Karnataka,India,South,560005,Net Banking,Online,Shipped,Sneha,Warehouse D,Online Campaign,600,2026-09-16,2026-09-20,27
+ORD1047,2026-09-16,Arjun Yadav,Regular,USB-C Hub,Accessories,Hubs,Connectx,HUB-401,3.0,2200,6600.0,0,1188,1800,Chennai,Tamil Nadu,India,South,600005,Upi,Marketplace,Delivered,Amit,Warehouse D,Summer Sale,250,2026-09-17,2026-09-21,22
+ORD1048,2026-09-17,Karan Singh,Regular,Smartphone X,Electronics,Mobile,Phonemax,SP-501,2.0,42000,84000.0,10,15120,13000,Hyderabad,Telangana,India,South,500005,Cash,Online,Processing,Priya,Warehouse B,New Launch,500,2026-09-18,,36
+ORD1049,2026-09-18,Sneha Patel,Premium,Tablet Air,Electronics,Tablet,Tabtech,TB-601,1.0,28000,28000.0,5,5040,4500,Kolkata,West Bengal,India,East,700005,Credit Card,Online,Delivered,Rohit,Warehouse A,Diwali,400,2026-09-19,2026-09-23,30
+ORD1050,2026-09-19,Vivek Das,Regular,Office Chair,Furniture,Chair,Comfortseat,CH-701,3.0,8500,25500.0,7,4590,5100,Jaipur,Rajasthan,India,West,302005,Debit Card,Retail Store,Delivered,Neha,Warehouse C,Festive Offer,700,2026-09-20,2026-09-24,41
