@@ -38,7 +38,8 @@
             Supported formats: CSV and Excel (.xlsx)
         </p>
 
-        <form action="/upload"
+        <form id="drop-zone"
+              action="/upload"
               method="POST"
               enctype="multipart/form-data"
               class="upload-form">
@@ -46,7 +47,7 @@
             <label for="file" class="file-label">
                 Choose Dataset
             </label>
-
+<p class="drop-hint"></p>
             <input type="file"
                    id="file"
                    name="file"
@@ -100,6 +101,6 @@ function showFileName() {
     }
 }
 </script>
-
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
