@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" width="100%" height="420" fill="none">
+  <defs>
+    <linearGradient id="pipeBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <linearGradient id="pipeGradBrand" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+
+    <linearGradient id="pipeGradCool" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+
+    <linearGradient id="pipeGradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+
+    <filter id="pipeShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+  </defs>
+
+  <style>
+    .font-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; }
+    .font-sub { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 600; }
+    .font-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace; }
+  </style>
+
+  <!-- Container -->
+  <g filter="url(#pipeShadow)">
+    <rect x="15" y="15" width="970" height="390" rx="18" fill="url(#pipeBg)" stroke="#334155" stroke-width="1.5" />
+
+    <!-- Title & Badge -->
+    <text x="40" y="52" fill="url(#pipeGradBrand)" class="font-title" font-size="22">DATA PIPELINE ARCHITECTURE</text>
+    <text x="40" y="72" fill="#94a3b8" class="font-body" font-size="12">End-to-End Ingestion, Sanitization, Analytical Processing, and Presentation Flow</text>
+
+    <!-- 4 PIPELINE STAGE BLOCKS -->
+
+    <!-- STAGE 1: INGESTION -->
+    <g transform="translate(35, 95)">
+      <rect x="0" y="0" width="200" height="270" rx="14" fill="#1e293b" fill-opacity="0.6" stroke="#06b6d4" stroke-width="1.2" />
+      <rect x="0" y="0" width="200" height="36" rx="14" fill="#06b6d4" fill-opacity="0.2" />
+      <text x="100" y="24" fill="#38bdf8" class="font-sub" font-size="12" text-anchor="middle">1. RAW INGESTION</text>
+
+      <g transform="translate(16, 54)">
+        <text x="0" y="16" font-size="20">📁</text>
+        <text x="32" y="16" fill="#f8fafc" class="font-sub" font-size="13">File Upload</text>
+        <text x="32" y="32" fill="#94a3b8" class="font-mono" font-size="11">.CSV &amp; .XLSX</text>
+
+        <line x1="0" y1="46" x2="168" y2="46" stroke="#334155" stroke-width="1" />
+
+        <text x="0" y="68" fill="#cbd5e1" class="font-body" font-size="11">• Drag &amp; Drop Zone</text>
+        <text x="0" y="88" fill="#cbd5e1" class="font-body" font-size="11">• Filetype Validation</text>
+        <text x="0" y="108" fill="#cbd5e1" class="font-body" font-size="11">• Raw Archive Stored</text>
+        <text x="0" y="128" fill="#cbd5e1" class="font-body" font-size="11">• Pandas Reader Init</text>
+
+        <rect x="0" y="150" width="168" height="34" rx="6" fill="#0f172a" stroke="#06b6d4" stroke-width="1" />
+        <text x="84" y="172" fill="#38bdf8" class="font-mono" font-size="10" text-anchor="middle">Flask /upload Endpoint</text>
+      </g>
+    </g>
+
+    <!-- Connector Arrow 1 -->
+    <path d="M 245 230 L 275 230" stroke="#06b6d4" stroke-width="2.5" stroke-dasharray="4 3" />
+    <polygon points="275,225 285,230 275,235" fill="#06b6d4" />
+
+    <!-- STAGE 2: CLEANING ENGINE -->
+    <g transform="translate(285, 95)">
+      <rect x="0" y="0" width="210" height="270" rx="14" fill="#1e293b" fill-opacity="0.6" stroke="#6366f1" stroke-width="1.2" />
+      <rect x="0" y="0" width="210" height="36" rx="14" fill="#6366f1" fill-opacity="0.2" />
+      <text x="105" y="24" fill="#a5b4fc" class="font-sub" font-size="12" text-anchor="middle">2. CLEANING ENGINE</text>
+
+      <g transform="translate(16, 54)">
+        <text x="0" y="16" font-size="20">🧹</text>
+        <text x="32" y="16" fill="#f8fafc" class="font-sub" font-size="13">src/cleaning.py</text>
+        <text x="32" y="32" fill="#94a3b8" class="font-mono" font-size="11">10-Step Pipeline</text>
+
+        <line x1="0" y1="46" x2="178" y2="46" stroke="#334155" stroke-width="1" />
+
+        <text x="0" y="68" fill="#cbd5e1" class="font-body" font-size="11">• snake_case Headers</text>
+        <text x="0" y="88" fill="#cbd5e1" class="font-body" font-size="11">• Deduplication</text>
+        <text x="0" y="108" fill="#cbd5e1" class="font-body" font-size="11">• Universal Date Parse</text>
+        <text x="0" y="128" fill="#cbd5e1" class="font-body" font-size="11">• Qty * Price Imputation</text>
+        <text x="0" y="148" fill="#cbd5e1" class="font-body" font-size="11">• Whitespace Trimmed</text>
+
+        <rect x="0" y="162" width="178" height="28" rx="6" fill="#0f172a" stroke="#6366f1" stroke-width="1" />
+        <text x="89" y="180" fill="#a5b4fc" class="font-mono" font-size="9" text-anchor="middle">data/cleaned/ Exported</text>
+      </g>
+    </g>
+
+    <!-- Connector Arrow 2 -->
+    <path d="M 505 230 L 535 230" stroke="#6366f1" stroke-width="2.5" stroke-dasharray="4 3" />
+    <polygon points="535,225 545,230 535,235" fill="#6366f1" />
+
+    <!-- STAGE 3: EDA & METRICS ENGINE -->
+    <g transform="translate(545, 95)">
+      <rect x="0" y="0" width="200" height="270" rx="14" fill="#1e293b" fill-opacity="0.6" stroke="#ec4899" stroke-width="1.2" />
+      <rect x="0" y="0" width="200" height="36" rx="14" fill="#ec4899" fill-opacity="0.2" />
+      <text x="100" y="24" fill="#f472b6" class="font-sub" font-size="12" text-anchor="middle">3. EDA ANALYTICS</text>
+
+      <g transform="translate(16, 54)">
+        <text x="0" y="16" font-size="20">📈</text>
+        <text x="32" y="16" fill="#f8fafc" class="font-sub" font-size="13">src/analysis.py</text>
+        <text x="32" y="32" fill="#94a3b8" class="font-mono" font-size="11">Statistical Models</text>
+
+        <line x1="0" y1="46" x2="168" y2="46" stroke="#334155" stroke-width="1" />
+
+        <text x="0" y="68" fill="#cbd5e1" class="font-body" font-size="11">• Total &amp; Mean Sales</text>
+        <text x="0" y="88" fill="#cbd5e1" class="font-body" font-size="11">• Product GroupBy</text>
+        <text x="0" y="108" fill="#cbd5e1" class="font-body" font-size="11">• Category GroupBy</text>
+        <text x="0" y="128" fill="#cbd5e1" class="font-body" font-size="11">• City Breakdown</text>
+        <text x="0" y="148" fill="#cbd5e1" class="font-body" font-size="11">• Monthly Periodicity</text>
+
+        <rect x="0" y="162" width="168" height="28" rx="6" fill="#0f172a" stroke="#ec4899" stroke-width="1" />
+        <text x="84" y="180" fill="#f472b6" class="font-mono" font-size="9" text-anchor="middle">KPIs &amp; Aggregations</text>
+      </g>
+    </g>
+
+    <!-- Connector Arrow 3 -->
+    <path d="M 755 230 L 785 230" stroke="#ec4899" stroke-width="2.5" stroke-dasharray="4 3" />
+    <polygon points="785,225 795,230 785,235" fill="#ec4899" />
+
+    <!-- STAGE 4: PRESENTATION & UI -->
+    <g transform="translate(795, 95)">
+      <rect x="0" y="0" width="160" height="270" rx="14" fill="#1e293b" fill-opacity="0.6" stroke="#10b981" stroke-width="1.2" />
+      <rect x="0" y="0" width="160" height="36" rx="14" fill="#10b981" fill-opacity="0.2" />
+      <text x="80" y="24" fill="#34d399" class="font-sub" font-size="12" text-anchor="middle">4. DASHBOARD</text>
+
+      <g transform="translate(14, 54)">
+        <text x="0" y="16" font-size="20">⚡</text>
+        <text x="28" y="16" fill="#f8fafc" class="font-sub" font-size="13">Plotly + UI</text>
+        <text x="28" y="32" fill="#94a3b8" class="font-mono" font-size="10">Glassmorphic</text>
+
+        <line x1="0" y1="46" x2="132" y2="46" stroke="#334155" stroke-width="1" />
+
+        <text x="0" y="68" fill="#cbd5e1" class="font-body" font-size="10">• 3 Plotly Charts</text>
+        <text x="0" y="88" fill="#cbd5e1" class="font-body" font-size="10">• 5 KPI Stat Cards</text>
+        <text x="0" y="108" fill="#cbd5e1" class="font-body" font-size="10">• Dynamic Filter</text>
+        <text x="0" y="128" fill="#cbd5e1" class="font-body" font-size="10">• Live Data Search</text>
+        <text x="0" y="148" fill="#cbd5e1" class="font-body" font-size="10">• CSV/XLSX Export</text>
+
+        <rect x="0" y="162" width="132" height="28" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1" />
+        <text x="66" y="180" fill="#34d399" class="font-mono" font-size="9" text-anchor="middle">Render Deployed</text>
+      </g>
+    </g>
+  </g>
+</svg>
