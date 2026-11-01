@@ -1,7 +1,22 @@
-venv/pycache/*.pyc
+# Secrets / local environment (API keys, secret key) - never commit
+.env
+*.env
 
-data/cleaned/data/raw/
+# Logs
+logs/
+*.log
 
-.idea/.vscode/
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
 
-.env *.log
+# Locally generated data (uploaded datasets, session DuckDB databases)
+data/raw/
+data/cleaned/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store

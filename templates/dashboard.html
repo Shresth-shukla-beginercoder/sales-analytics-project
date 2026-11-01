@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Sales Analytics Dashboard</title>
 
@@ -13,6 +14,7 @@
           href="{{ url_for('static', filename='css/style.css') }}">
 
  <script src="{{ url_for('static', filename='js/plotly.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/theme-toggle.js') }}"></script>
     <script>
     console.log("Plotly loaded:", typeof Plotly);
 </script>
@@ -20,12 +22,49 @@
 
 <body>
 
+<!-- FULL-SCREEN LOADER (covers the page until the charts finish rendering) -->
+<div id="dashboardLoader" class="dashboard-loader" role="status" aria-live="polite">
+    <div class="loader-spinner" aria-hidden="true"></div>
+    <p class="loader-text">Preparing your dashboard...</p>
+</div>
+
+<!-- Theme Toggle Button -->
+<button id="themeToggle" aria-label="Toggle dark mode">
+    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+</button>
+
 <div class="container">
 
     <h1>Sales Analytics Dashboard</h1>
 
     <!-- FILTERS -->
     <h2>Filters</h2>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+            {% for category, message in messages %}
+                <div class="flash-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
 
     <form action="/dashboard" method="GET">
 
@@ -234,43 +273,128 @@
 
     </div>
 
+    <!-- FLOATING CHATBOT WIDGET -->
+    <div id="chatbotWidget">
+        <!-- Floating Button: icon reproduces the site favicon (dark disc + gradient bars + trend + sparkle) -->
+        <button id="chatbotToggle" class="chatbot-toggle" aria-label="Open chatbot">
+            <img src="{{ url_for('static', filename='chatbot-icon.svg') }}" alt="Sales Analytics Assistant" class="chatbot-toggle-icon">
+        </button>
+
+        <!-- Chat Panel -->
+        <div id="chatbotPanel" class="chatbot-panel">
+            <div class="chatbot-header">
+                <h3>Sales Analytics Assistant</h3>
+                <button id="chatbotClose" class="chatbot-close" aria-label="Close chatbot">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div id="chatHistory" class="chatbot-messages"></div>
+            <div class="chatbot-input-area">
+                <input type="text" id="chatInput" placeholder="Ask about your data..." onkeypress="if(event.key==='Enter') sendMessage()">
+                <button onclick="sendMessage()" class="chatbot-send-btn" aria-label="Send message">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    <span class="chatbot-send-label">Send</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/marked.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/purify.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+
 </div>
 {%endif%}
 
 <!-- PLOTLY JAVASCRIPT -->
 
+{% if not no_data %}
 <script>
+    // ----- Full-screen loader: hide it once all three charts are ready -----
+    const loader = document.getElementById('dashboardLoader');
+    let chartsReady = 0;
 
-    const productData = {{ product_chart | safe }};
+    function checkChartsReady() {
+        chartsReady++;
+        if (chartsReady >= 3) {
+            rethemeCharts();
+            setTimeout(function () {
+                if (loader) loader.classList.add('hidden');
+            }, 400);
+        }
+    }
 
-    Plotly.newPlot(
-        "product-chart",
-        productData.data,
-        productData.layout,
-        {responsive: true}
-    );
+    // ----- Theme-aware chart restyling (reads the active CSS variables) -----
+    function rethemeCharts() {
+        if (typeof Plotly === 'undefined') return;
+        const cs = getComputedStyle(document.documentElement);
+        const text = (cs.getPropertyValue('--text') || '#1e1b4b').trim();
+        const muted = (cs.getPropertyValue('--muted') || '#64748b').trim();
+        const grid = (cs.getPropertyValue('--line-soft') || '#e8ebfa').trim();
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
+        const updates = {
+            'paper_bgcolor': 'rgba(0,0,0,0)',
+            'plot_bgcolor': 'rgba(0,0,0,0)',
+            'font': { color: text, family: '"Segoe UI", system-ui, sans-serif' },
+            'title.font': { color: text },
+            'xaxis.title.font': { color: muted },
+            'yaxis.title.font': { color: muted },
+            'xaxis.tickfont': { color: muted },
+            'yaxis.tickfont': { color: muted },
+            'xaxis.gridcolor': grid,
+            'yaxis.gridcolor': grid,
+            'xaxis.linecolor': grid,
+            'yaxis.linecolor': grid,
+            'legend.font': { color: muted },
+            'hoverlabel': {
+                'bgcolor': isDark ? '#1a2040' : '#ffffff',
+                'bordercolor': grid,
+                'font': { 'color': text }
+            }
+        };
 
-    const categoryData = {{ category_chart | safe }};
+        ['product-chart', 'category-chart', 'monthly-chart'].forEach(function (id) {
+            const el = document.getElementById(id);
+            if (el && el.data && el.data.length) {
+                Plotly.relayout(el, updates);
+            }
+        });
+    }
 
-    Plotly.newPlot(
-        "category-chart",
-        categoryData.data,
-        categoryData.layout,
-        {responsive: true}
-    );
+    // ----- Plot each chart, then apply the themed overrides -----
+    function plotThemed(divId, chartJson) {
+        Plotly.newPlot(divId, chartJson.data, chartJson.layout, { responsive: true })
+            .catch(function (err) {
+                console.warn('Chart render issue:', err);
+            })
+            .then(checkChartsReady);
+    }
 
+    plotThemed('product-chart', {{ product_chart | safe }});
+    plotThemed('category-chart', {{ category_chart | safe }});
+    plotThemed('monthly-chart', {{ monthly_chart | safe }});
 
-    const monthlyData = {{ monthly_chart | safe }};
-
-    Plotly.newPlot(
-        "monthly-chart",
-        monthlyData.data,
-        monthlyData.layout,
-        {responsive: true}
-    );
-
+    // Re-theme the charts whenever the theme changes
+    // (theme-toggle.js dispatches 'themechange' after flipping data-theme)
+    document.addEventListener('themechange', function () {
+        rethemeCharts();
+    });
 </script>
+{% else %}
+<script>
+    // No charts on this page - hide the loader immediately
+    (function () {
+        const l = document.getElementById('dashboardLoader');
+        if (l) l.classList.add('hidden');
+    })();
+</script>
+{% endif %}
 <script>
 
 function searchTable() {

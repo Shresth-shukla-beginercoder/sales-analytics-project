@@ -66,7 +66,8 @@ In real-world business workflows, sales datasets exported from ERPs, CRM platfor
 2. **Automated Data Sanitization:** An intelligent 10-stage Python cleaning algorithm resolves duplicates, harmonizes dates, corrects negative values, trims whitespace, and calculates missing sales metrics (`Sales = Quantity × Price`).
 3. **Data Quality Audit:** Instant Before-vs-After health scorecard summarizing dropped anomalies, resolved nulls, and deduplication statistics.
 4. **Interactive Executive Dashboard:** High-impact business intelligence with KPI summary tiles, Plotly.js charts (Product Bar, Category Donut, Monthly Trend), multi-dimensional filters (City, Category, Product), and live client-side table searching.
-5. **One-Click Clean Export:** Export the cleansed dataset back to CSV or Excel for downstream machine learning or stakeholder presentation.
+5. **AI-Powered Analytics Assistant:** Integrated Gemini-powered chatbot allows you to ask natural language questions about your sales data, powered by secure, session-isolated DuckDB and MCP tool integration.
+6. **One-Click Clean Export:** Export the cleansed dataset back to CSV or Excel for downstream machine learning or stakeholder presentation.
 
 ---
 
@@ -104,6 +105,8 @@ In real-world business workflows, sales datasets exported from ERPs, CRM platfor
 
 | Feature | Description | Business Benefit |
 | :--- | :--- | :--- |
+| **🤖 AI Sales Assistant** | Natural-language querying powered by Google's Gemini API and an isolated DuckDB MCP engine. | Get instant conversational insights on top products, city breakdowns, and revenue anomalies. |
+| **🦆 Session-Isolated DuckDB** | Ephemeral, per-session analytical databases guaranteeing multi-tenant security and zero data collisions. | Lightning-fast queries with robust data isolation and automatic cleanup on expiration. |
 | **📁 Universal File Ingestion** | Drag & drop or browse `.csv` and `.xlsx` files with client & server-side format verification. | Eliminates manual file pre-processing; users can upload directly from their POS or ERP. |
 | **🧼 10-Step Automated Pipeline** | Standardizes column headers, strips invisible whitespace, harmonizes casing, unifies dates, handles invalid quantities, and derives missing sales. | Transforms un-analyzable messy spreadsheets into clean, reliable data in < 1 second. |
 | **📈 Statistical EDA Engine** | Computes key operational metrics: Total Revenue, Average Order Value (AOV), Volume, Top Selling Product, and Highest Grossing City. | Provides executives with immediate snapshot metrics without writing SQL or Pivot Tables. |

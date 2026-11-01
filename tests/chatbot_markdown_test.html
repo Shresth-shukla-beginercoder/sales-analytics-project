@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chatbot Markdown Render Test</title>
+<style>
+    body { font-family: "Segoe UI", system-ui, sans-serif; margin: 24px; background: #f5f7ff; }
+    pre.results { background: #fff; border: 1px solid #dbe0f5; border-radius: 10px; padding: 16px; font-size: 14px; }
+    .pass { color: #15803d; font-weight: 600; }
+    .fail { color: #b91c1c; font-weight: 700; }
+    .section { margin-top: 18px; }
+    h1 { font-size: 20px; }
+    .hint { color: #64748b; font-size: 13px; }
+</style>
+<!-- Real app assets under test -->
+<script src="../static/js/marked.min.js"></script>
+<script src="../static/js/purify.min.js"></script>
+</head>
+<body>
+
+<h1>Chatbot markdown render test</h1>
+<p class="hint">
+    Run this page locally (double-click it). It loads the real <code>chatbot.js</code> and checks
+    that bot answers render as formatted, sanitized HTML. A dark/light toggle below re-tests
+    theme support (the chat styles come from <code>static/css/style.css</code>).
+</p>
+
+<!-- Minimal DOM so chatbot.js's DOMContentLoaded wiring does not throw -->
+<div id="chatbotToggle"></div>
+<button id="chatbotClose"></button>
+<div id="chatbotPanel">
+    <div id="chatHistory" class="chatbot-messages" style="height:220px; border:1px solid var(--line); border-radius:12px;"></div>
+</div>
+<input id="chatInput">
+
+<link rel="stylesheet" href="../static/css/style.css">
+<script src="../static/js/chatbot.js"></script>
+
+<script>
+(function () {
+    var results = [];
+    function check(name, cond) {
+        results.push({ name: name, ok: !!cond });
+    }
+
+    // ---- 1. Bold renders as <strong>, no raw ** symbols ----
+    var html = renderBotHtml('**Total Sales**');
+    check('bold: <strong> tag produced', /<strong>Total Sales<\/strong>/.test(html));
+    check('bold: no raw ** symbols', html.indexOf('**') === -1);
+
+    // ---- 2. Lists and line breaks render ----
+    html = renderBotHtml('Top cities:\n- Delhi\n- Mumbai\n- Pune');
+    check('list: <ul> with 3 <li> items', html.indexOf('<ul>') > -1 && (html.match(/<li>/g) || []).length === 3);
+
+    html = renderBotHtml('Line one\nLine two');
+    check('line breaks: single newline becomes <br>', html.indexOf('<br') > -1);
+
+    // ---- 3. Unsafe output is neutralized ----
+    var probe = document.createElement('div');
+    probe.innerHTML = renderBotHtml('<script>window.__pwned=1<\/script>safe text');
+    check('script tag removed from output', probe.querySelector('script') === null);
+    check('script body not executable', window.__pwned !== 1);
+
+    probe = document.createElement('div');
+    probe.innerHTML = renderBotHtml('<img src=x onerror=window.__pwned=2>body');
+    check('event-handler attribute (onerror) removed', probe.innerHTML.indexOf('onerror') === -1);
+
+    probe = document.createElement('div');
+    probe.innerHTML = renderBotHtml('click [here](javascript:window.__pwned=3) now');
+    var link = probe.querySelector('a');
+    check('javascript: link href stripped', !link || !/^\s*javascript:/i.test(link.getAttribute('href') || ''));
+    check('no script executed at all', window.__pwned !== 1 && window.__pwned !== 2 && window.__pwned !== 3);
+
+    // ---- 4. A successful answer carries no error bubble / error text ----
+    html = renderBotHtml('Your total sales revenue is 1741190 across 60 orders.');
+    check('success answer has no "error" marker', html.toLowerCase().indexOf('error') === -1);
+
+    // ---- 5. Visual sample rendered with the real chat styles ----
+    var chat = document.getElementById('chatHistory');
+    chat.innerHTML =
+        '<div class="message user-message">What is my total sales revenue?</div>' +
+        '<div class="message bot-message markdown">' + renderBotHtml(
+            '**Total Sales**: `1,741,190` across 60 orders.\n\nTop cities:\n- Delhi: 500,000\n- Mumbai: 400,000\n- Pune: 300,000'
+        ) + '</div>';
+    var sampleStrong = chat.querySelector('strong');
+    check('sample: bold text visually bold', sampleStrong &&
+          getComputedStyle(sampleStrong).fontWeight !== 'normal' &&
+          getComputedStyle(sampleStrong).fontWeight !== '400');
+
+    // ---- 6. Theme support (light + dark) ----
+    document.documentElement.setAttribute('data-theme', 'dark');
+    var cs = getComputedStyle(document.documentElement);
+    var darkSurface = cs.getPropertyValue('--surface').trim();
+    var sampleBgDark = getComputedStyle(chat.querySelector('.bot-message.markdown')).backgroundColor;
+    check('dark theme: chat bubble follows --surface', darkSurface !== '' && sampleBgDark !== 'rgba(0, 0, 0, 0)');
+    document.documentElement.setAttribute('data-theme', 'light');
+
+    // ---- Render results ----
+    var out = document.createElement('pre');
+    out.className = 'results';
+    var pass = 0, fail = 0;
+    results.forEach(function (r) {
+        var cls = r.ok ? 'pass' : 'fail';
+        if (r.ok) pass++; else fail++;
+        out.innerHTML += '<span class="' + cls + '">' + (r.ok ? 'PASS' : 'FAIL') + '</span>  ' +
+                         r.name.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '\n';
+    });
+    out.innerHTML = '<span class="' + (fail ? 'fail' : 'pass') + '">TOTAL: ' + pass + ' passed, ' + fail + ' failed</span>\n\n' + out.innerHTML;
+    document.body.insertBefore(out, document.body.firstChild.nextSibling ? chat : null);
+
+    var section = document.createElement('div');
+    section.className = 'section';
+    section.innerHTML = '<strong>Visual sample (toggling the app\'s theme re-themes it):</strong> ' +
+        '<button id="themeToggle" style="margin-left:12px;">toggle theme</button>';
+    document.body.appendChild(section);
+    document.body.insertBefore(out, section);
+
+    document.getElementById('themeToggle').addEventListener('click', function () {
+        // same mechanism as the app's theme-toggle.js
+        var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', cur);
+    });
+})();
+</script>
+</body>
+</html>
