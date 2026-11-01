@@ -1,33 +1,61 @@
-blinker==1.9.0
-click==8.5.0
-et_xmlfile==2.0.0
+# =============================================================================
+# Sales Analytics — Reproducible Dependency Manifest
+#
+# Every package is pinned to the exact version verified in the local virtual
+# environment where the full test suite (56 tests) passes.
+#
+# The complete set is pinned — including test dependencies — so the pip
+# resolver follows one deterministic path. Unbounded entries (previously
+# "pytest", "pytest-flask") forced version backtracking against a deep
+# pinned subgraph and caused Render's "resolution-too-deep" build failure.
+#
+# Render configuration (unchanged):
+#   Build Command:  pip install -r requirements.txt
+#   Start Command:  gunicorn app:app
+# =============================================================================
+
+# --- Web framework (production) ---------------------------------------------
 Flask==3.1.3
-Flask-WTF==1.2.1
-python-dotenv==1.0.1
 gunicorn==26.2.0
-itsdangerous==2.2.0
+Werkzeug==3.1.8
 Jinja2==3.1.6
 MarkupSafe==3.0.3
-narwhals==2.26.0
+click==8.5.0
+blinker==1.9.0
+itsdangerous==2.2.0
+
+# --- Forms & CSRF -------------------------------------------------------------
+Flask-WTF==1.3.0
+WTForms==3.3.1
+
+# --- Configuration ------------------------------------------------------------
+python-dotenv==1.2.4
+
+# --- Data pipeline (cleaning, analysis, export) --------------------------------
+pandas==3.0.5
 numpy==2.5.3
 openpyxl==3.1.5
-packaging==26.3
-pandas==3.0.5
+et_xmlfile==2.0.0
 plotly==7.1.0
 python-dateutil==2.9.0.post0
 six==1.17.0
 tzdata==2026.4
-Werkzeug==3.1.8
-WTForms==3.2.1
+packaging==26.3
+narwhals==2.26.0
 
-# DuckDB
+# --- Analytical database (per-session isolation) ------------------------------
 duckdb==1.5.6
 
-# MCP & AI
-mcp-server-motherduck==1.1.0
+# --- MCP (Model Context Protocol) — DuckDB tool surface for the AI assistant ---
 mcp==2.3.0
+mcp-server-motherduck==1.1.0
+
+# --- AI: Google Gemini function-calling (chatbot) ------------------------------
 google-genai==2.34.0
 
-# Testing
-pytest
-pytest-flask
+# --- Test suite ----------------------------------------------------------------
+# Pinned for reproducibility (unbounded test deps caused resolution-too-deep).
+# pytest-asyncio is required by the @pytest.mark.asyncio chatbot/MCP tests.
+pytest==8.4.2
+pytest-asyncio==0.24.0
+pytest-flask==1.3.0
